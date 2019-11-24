@@ -11,6 +11,7 @@ export class ServiceAuthenticator extends Service {
       Service.configurationAttributes,
       createAttributes({
         jwt: {
+          description: "jwt related items",
           attributes: {
             private: {
               description: "private key for token",
@@ -39,7 +40,7 @@ export class ServiceAuthenticator extends Service {
   static get endpoints() {
     return {
       ...super.endpoints,
-      token: {
+      access_token: {
         default: true,
         receive: "accessTokenGenerator"
       }
