@@ -65,13 +65,13 @@ export class ServiceAuthenticator extends Service {
       for (const e of this.outEndpoints) {
         const response = await e.receive(params);
 
-        if (response && response.entitlements.length > 0) {
-          entitlements = response.entitlements;
+        if (response && response.entitlements) {
+          entitlements = [...response.entitlements];
           break;
         }
       }
 
-      entitlements = [entitlements].filter(e => this.entitlementFilter(e));
+      entitlements = [...entitlements].filter(e => this.entitlementFilter(e));
 
       if (entitlements.length > 0) {
         return {
