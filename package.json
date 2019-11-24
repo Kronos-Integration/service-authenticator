@@ -1,0 +1,10 @@
+{
+  "name": "@kronos-integration/service-authentication",
+  "main": "src/service-authenticator.mjs",
+  "module": "src/service-authenticator.mjs",
+  "dependencies": {
+    "@kronos-integration/service": "^7.0.0",
+    "jsonwebtoken": "^8.5.1"
+  }
+
+}
