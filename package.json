@@ -1,5 +1,5 @@
 {
-  "name": "@kronos-integration/service-authentication",
+  "name": "@kronos-integration/service-authenticator",
   "version": "0.0.0-semantic-release",
   "type": "module",
   "publishConfig": {

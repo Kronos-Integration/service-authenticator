@@ -11,7 +11,7 @@ export class ServiceAuthenticator extends Service {
       Service.configurationAttributes,
       createAttributes({
         jwt: {
-          description: "jwt related items",
+          description: "jwt related",
           attributes: {
             private: {
               description: "private key for token",
