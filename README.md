@@ -6,8 +6,8 @@
 [![Greenkeeper](https://badges.greenkeeper.io/Kronos-Integration/service-authenticator.svg)](https://greenkeeper.io/)
 [![Known Vulnerabilities](https://snyk.io/test/github/Kronos-Integration/service-authenticator/badge.svg)](https://snyk.io/test/github/Kronos-Integration/service-authenticator)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
-[![minified size](https://badgen.net/bundlephobia/min/@kronos-integration/service-authentication)](https://bundlephobia.com/result?p=@kronos-integration/service-authentication)
-[![npm](https://img.shields.io/npm/v/@kronos-integration/service-authentication.svg)](https://www.npmjs.com/package/@kronos-integration/service-authentication)
+[![minified size](https://badgen.net/bundlephobia/min/@kronos-integration/service-authenticator)](https://bundlephobia.com/result?p=@kronos-integration/service-authenticator)
+[![npm](https://img.shields.io/npm/v/@kronos-integration/service-authenticator.svg)](https://www.npmjs.com/package/@kronos-integration/service-authenticator)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/Kronos-Integration/service-authenticator)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
