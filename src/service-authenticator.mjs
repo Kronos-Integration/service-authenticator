@@ -41,7 +41,6 @@ export class ServiceAuthenticator extends Service {
     return {
       ...super.endpoints,
       access_token: {
-        default: true,
         receive: "accessTokenGenerator"
       }
     };
