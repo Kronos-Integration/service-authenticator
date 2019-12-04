@@ -62,7 +62,7 @@ export class ServiceAuthenticator extends Service {
       let entitlements = [];
 
       for (const e of this.outEndpoints) {
-        const response = await e.receive(credentials);
+        const response = await e.send(credentials);
 
         if (response && response.entitlements) {
           entitlements = [...response.entitlements];

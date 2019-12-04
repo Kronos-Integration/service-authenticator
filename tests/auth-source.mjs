@@ -13,8 +13,8 @@ export class AuthSource extends Service {
         };
     }
 
-    async authenticate(props) {
-        const { username, password } = props;
+    async authenticate(credentials) {
+        const { username, password } = credentials;
 
         if (password !== "test") {
             throw new Error('invalid credentials');
