@@ -1,10 +1,11 @@
 {
   "name": "@kronos-integration/service-authenticator",
   "version": "0.0.0-semantic-release",
-  "type": "module",
   "publishConfig": {
     "access": "public"
   },
+  "sideEffects": false,
+  "type": "module",
   "main": "src/service-authenticator.mjs",
   "module": "src/service-authenticator.mjs",
   "description": "authentication providing service",
@@ -61,6 +62,5 @@
     "repository": {
       "url": "https://github.com/arlac77/npm-package-template-esm-only.git"
     }
-  },
-  "sideEffects": false
+  }
 }
