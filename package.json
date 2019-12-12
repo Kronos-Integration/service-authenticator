@@ -24,7 +24,7 @@
     "test": "ava"
   },
   "dependencies": {
-    "@kronos-integration/service": "^8.0.0",
+    "@kronos-integration/service": "^8.1.0",
     "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
