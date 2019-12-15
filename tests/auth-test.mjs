@@ -13,7 +13,7 @@ const config = {
   auth: {
     type: ServiceAuthenticator,
     endpoints: {
-      ldap: "service(ldap).authenticate"
+      auth1: "service(ldap).authenticate"
     },
     jwt: {
       public: readFileSync(join(here, "fixtures", "demo.rsa.pub")),
@@ -30,11 +30,11 @@ test("service-auth", async t => {
   const [auth] = await sp.declareServices(config);
   await auth.start();
 
-  /*
-  t.log(auth.endpoints.access_token);
-  t.true(auth.endpoints.access_token.isConnected(sp.services.ldap.endpoints.authenticate));
+  t.is(auth.description, "provide authetication services");
+  t.true(
+    auth.endpoints.auth1.isConnected(sp.services.ldap.endpoints.authenticate)
+  );
   t.is(auth.state, "running");
-*/
 
   const response = await auth.endpoints.access_token.receive({
     username: "user1",
