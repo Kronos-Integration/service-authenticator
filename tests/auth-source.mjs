@@ -16,8 +16,7 @@ export class AuthSource extends Service {
     if (password !== "test") {
       throw new Error("invalid credentials");
     }
-    const response = { username, entitlements: new Set(["a", "b"]) };
-    return response;
+    return { username, entitlements: new Set(["a", "b"]) };
   }
 }
 
