@@ -27,7 +27,7 @@ const config = {
 
 test("service-auth", async t => {
   const sp = new StandaloneServiceProvider();
-  const [auth] = await sp.declareServices(config);
+  const {auth} = await sp.declareServices(config);
   await auth.start();
 
   t.is(auth.description, "provide authetication services");
@@ -45,6 +45,5 @@ test("service-auth", async t => {
   const access_token = response.access_token;
   const data = JSON.parse(Buffer.from(access_token.split(".")[1], "base64"));
 
-  console.log(data);
   t.deepEqual(data.entitlements.split(/,/), ["a", "b"]);
 });
