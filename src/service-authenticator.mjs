@@ -92,4 +92,5 @@ export class ServiceAuthenticator extends Service {
     }
   }
 }
+
 export default ServiceAuthenticator;

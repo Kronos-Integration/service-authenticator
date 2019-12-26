@@ -30,7 +30,7 @@ test("service-auth", async t => {
   const {auth} = await sp.declareServices(config);
   await auth.start();
 
-  t.is(auth.description, "provide authetication services");
+  t.is(auth.description, "provide authentication services");
   t.true(
     auth.endpoints.auth1.isConnected(sp.services.ldap.endpoints.authenticate)
   );
