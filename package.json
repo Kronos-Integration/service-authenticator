@@ -9,7 +9,7 @@
   "main": "src/service-authenticator.mjs",
   "module": "src/service-authenticator.mjs",
   "description": "authentication providing service",
-  "keywords": [],
+  "keywords": ["jwt"],
   "contributors": [
     {
       "name": "Markus Felten",
