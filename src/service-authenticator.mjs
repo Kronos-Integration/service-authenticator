@@ -37,7 +37,7 @@ export class ServiceAuthenticator extends Service {
     );
   }
 
-  static get description() { return "provide authetication services"; }
+  static get description() { return "provide authentication services"; }
 
   static get endpoints() {
     return {
