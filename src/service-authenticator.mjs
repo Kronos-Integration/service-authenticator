@@ -37,7 +37,9 @@ export class ServiceAuthenticator extends Service {
     );
   }
 
-  static get description() { return "provide authentication services"; }
+  static get description() {
+    return "provide authentication services";
+  }
 
   static get endpoints() {
     return {
@@ -77,6 +79,7 @@ export class ServiceAuthenticator extends Service {
 
       if (entitlements.length > 0) {
         return {
+          token_type: "Bearer",
           access_token: jwt.sign(
             { entitlements: entitlements.join(",") },
             this.jwt.private,

@@ -27,7 +27,7 @@ const config = {
 
 test("service-auth", async t => {
   const sp = new StandaloneServiceProvider();
-  const {auth} = await sp.declareServices(config);
+  const { auth } = await sp.declareServices(config);
   await auth.start();
 
   t.is(auth.description, "provide authentication services");
@@ -41,7 +41,7 @@ test("service-auth", async t => {
     password: "test"
   });
 
-  // t.is(response.username, 'user1');
+  t.is(response.token_type, "Bearer");
   const access_token = response.access_token;
   const data = JSON.parse(Buffer.from(access_token.split(".")[1], "base64"));
 
