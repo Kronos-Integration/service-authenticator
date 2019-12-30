@@ -1,7 +1,7 @@
 [![Build Status](https://secure.travis-ci.org/Kronos-Integration/service-authenticator.png)](http://travis-ci.org/Kronos-Integration/service-authenticator)
 [![codecov.io](http://codecov.io/github/Kronos-Integration/service-authenticator/coverage.svg?branch=master)](http://codecov.io/github/Kronos-Integration/service-authenticator?branch=master)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![downloads](http://img.shields.io/npm/dm/service-authenticator.svg?style=flat-square)](https://npmjs.org/package/service-authenticator)
+[![downloads](http://img.shields.io/npm/dm/@kronos-integration/service-authenticator.svg?style=flat-square)](https://npmjs.org/package/@kronos-integration/service-authenticator)
 [![GitHub Issues](https://img.shields.io/github/issues/Kronos-Integration/service-authenticator.svg?style=flat-square)](https://github.com/Kronos-Integration/service-authenticator/issues)
 [![Greenkeeper](https://badges.greenkeeper.io/Kronos-Integration/service-authenticator.svg)](https://greenkeeper.io/)
 [![Known Vulnerabilities](https://snyk.io/test/github/Kronos-Integration/service-authenticator/badge.svg)](https://snyk.io/test/github/Kronos-Integration/service-authenticator)
