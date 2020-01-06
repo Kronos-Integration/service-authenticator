@@ -23,9 +23,20 @@ authentication providing service
 
 ### Table of Contents
 
+-   [JWTResponse](#jwtresponse)
+    -   [Properties](#properties)
 -   [ServiceAuthenticator](#serviceauthenticator)
     -   [accessTokenGenerator](#accesstokengenerator)
         -   [Parameters](#parameters)
+
+## JWTResponse
+
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
+
+### Properties
+
+-   `acess_token` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `token_type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** always "Bearer"
 
 ## ServiceAuthenticator
 
@@ -41,4 +52,4 @@ Generate a request handler to deliver JWT access tokens
     -   `credentials.username` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
     -   `credentials.password` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
-Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** return jwt access_token
+Returns **[JWTResponse](#jwtresponse)** jwt

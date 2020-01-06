@@ -3,6 +3,12 @@ import { mergeAttributes, createAttributes } from "model-attributes";
 import { Service } from "@kronos-integration/service";
 
 /**
+ * @typedef {Object} JWTResponse
+ * @property {string} acess_token
+ * @property {string} token_type always "Bearer"
+ */
+
+/**
  *
  */
 export class ServiceAuthenticator extends Service {
@@ -60,7 +66,7 @@ export class ServiceAuthenticator extends Service {
    * @param {Object} credentials
    * @param {string} credentials.username
    * @param {string} credentials.password
-   * @return {Object} return jwt access_token
+   * @return {JWTResponse} jwt
    */
   async accessTokenGenerator(credentials) {
     try {
