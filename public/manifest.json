@@ -1,0 +1,10 @@
+{
+  "name": "@kronos-integration/service-authenticator",
+  "description": "authentication providing service",
+  "icons": [
+    {
+      "src": "facicon.ico",
+      "sizes": "16x16"
+    }
+  ]
+}
