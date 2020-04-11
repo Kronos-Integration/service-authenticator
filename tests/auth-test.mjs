@@ -2,7 +2,7 @@ import test from "ava";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { readFileSync } from "fs";
-import AuthSource from "./auth-source.mjs";
+import AuthSource from "./helpers/auth-source.mjs";
 
 import { StandaloneServiceProvider } from "@kronos-integration/service";
 import { ServiceAuthenticator } from "../src/service-authenticator.mjs";
