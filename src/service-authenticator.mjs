@@ -4,7 +4,7 @@ import { Service } from "@kronos-integration/service";
 
 /**
  * @typedef {Object} JWTResponse
- * @property {string} acess_token
+ * @property {string} acess_token
  * @property {string} token_type always "Bearer"
  */
 
