@@ -8,8 +8,7 @@
   "type": "module",
   "main": "./src/service-authenticator.mjs",
   "exports": {
-    ".": "./src/service-authenticator.mjs",
-    "./": "./"
+    ".": "./src/service-authenticator.mjs"
   },
   "description": "authentication providing service",
   "keywords": [
