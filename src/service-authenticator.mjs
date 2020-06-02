@@ -85,7 +85,8 @@ export class ServiceAuthenticator extends Service {
 
       if (entitlements.length > 0) {
         return {
-          token_type: "Bearer",
+          token_type: "Bearer",  
+          expires_in: this.jwt.options.expiresIn,
           access_token: jwt.sign(
             { entitlements: entitlements.join(",") },
             this.jwt.private,
