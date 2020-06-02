@@ -5,7 +5,7 @@ import { readFileSync } from "fs";
 import AuthSource from "./helpers/auth-source.mjs";
 
 import { StandaloneServiceProvider } from "@kronos-integration/service";
-import { ServiceAuthenticator } from "../src/service-authenticator.mjs";
+import { ServiceAuthenticator } from "@kronos-integration/service-authenticator";
 
 const here = dirname(fileURLToPath(import.meta.url));
 
