@@ -29,8 +29,8 @@
     "lint": "documentation lint ./src/service-authenticator.mjs"
   },
   "dependencies": {
-    "@kronos-integration/endpoint": "^9.0.0",
-    "@kronos-integration/service": "^8.5.11",
+    "@kronos-integration/endpoint": "^9.0.3",
+    "@kronos-integration/service": "^8.5.15",
     "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
@@ -40,7 +40,7 @@
     "semantic-release": "^17.1.1"
   },
   "engines": {
-    "node": ">=14.3.0"
+    "node": ">=14.5.0"
   },
   "repository": {
     "type": "git",
