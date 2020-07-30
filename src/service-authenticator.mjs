@@ -12,6 +12,14 @@ import { Service } from "@kronos-integration/service";
  *
  */
 export class ServiceAuthenticator extends Service {
+
+  /**
+   * @return {string} 'authenticator'
+   */
+  static get name() {
+    return "authenticator";
+  }
+
   static get configurationAttributes() {
     return mergeAttributes(
       Service.configurationAttributes,
