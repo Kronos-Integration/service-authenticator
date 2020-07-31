@@ -27,6 +27,7 @@ authentication providing service
 -   [ServiceAuthenticator](#serviceauthenticator)
     -   [accessTokenGenerator](#accesstokengenerator)
         -   [Parameters](#parameters)
+    -   [name](#name)
 
 ## JWTResponse
 
@@ -52,3 +53,7 @@ Generate a request handler to deliver JWT access tokens
     -   `credentials.password` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 Returns **[JWTResponse](#jwtresponse)** jwt
+
+### name
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'authenticator'
