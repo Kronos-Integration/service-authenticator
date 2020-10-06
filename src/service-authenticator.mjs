@@ -58,6 +58,10 @@ export class ServiceAuthenticator extends Service {
   static get endpoints() {
     return {
       ...super.endpoints,
+      change_password: {
+        in: true,
+        receive: "changePassword"
+      },
       access_token: {
         in: true,
         receive: "accessTokenGenerator"
@@ -69,6 +73,16 @@ export class ServiceAuthenticator extends Service {
     return e;
   }
 
+  async changePassword(request) {
+    this.info(request);
+    
+    for (const e of this.outEndpoints) {
+      response = await e.send(request);
+    }
+    
+    return response;
+  }
+  
   /**
    * Generate a request handler to deliver JWT access tokens
    * @param {Object} credentials
