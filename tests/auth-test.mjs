@@ -46,4 +46,7 @@ test("service-auth", async t => {
   const data = JSON.parse(Buffer.from(access_token.split(".")[1], "base64"));
 
   t.deepEqual(data.entitlements.split(/,/), ["a", "b"]);
+
+  const refresh_token = response.refresh_token;
+  t.truthy(refresh_token);
 });

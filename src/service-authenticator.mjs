@@ -4,7 +4,8 @@ import { Service } from "@kronos-integration/service";
 
 /**
  * @typedef {Object} JWTResponse
- * @property {string} acess_token
+ * @property {string} access_token
+ * @property {string} refresh_token
  * @property {string} token_type always "Bearer"
  */
 
@@ -12,7 +13,6 @@ import { Service } from "@kronos-integration/service";
  *
  */
 export class ServiceAuthenticator extends Service {
-
   /**
    * @return {string} 'authenticator'
    */
@@ -39,10 +39,16 @@ export class ServiceAuthenticator extends Service {
               private: true,
               type: "blob"
             },
-            options: {
+            access_token: {
               attributes: {
                 algorithm: { default: "RS256", type: "string" },
-                expiresIn: { default: "12h", type: "duration" }
+                expiresIn: { default: "1h", type: "duration" }
+              }
+            },
+            refresh_token: {
+              attributes: {
+                algorithm: { default: "RS256", type: "string" },
+                expiresIn: { default: "30d", type: "duration" }
               }
             }
           }
@@ -75,14 +81,14 @@ export class ServiceAuthenticator extends Service {
 
   async changePassword(request) {
     this.info(request);
-    
+
     for (const e of this.outEndpoints) {
       response = await e.send(request);
     }
-    
+
     return response;
   }
-  
+
   /**
    * Generate a request handler to deliver JWT access tokens
    * @param {Object} credentials
@@ -107,13 +113,14 @@ export class ServiceAuthenticator extends Service {
 
       if (entitlements.length > 0) {
         return {
-          token_type: "Bearer",  
-          expires_in: this.jwt.options.expiresIn,
+          token_type: "Bearer",
+          expires_in: this.jwt.access_token.expiresIn,
           access_token: jwt.sign(
             { entitlements: entitlements.join(",") },
             this.jwt.private,
-            this.jwt.options
-          )
+            this.jwt.access_token
+          ),
+          refresh_token: jwt.sign({}, this.jwt.private, this.jwt.refresh_token)
         };
       } else {
         throw new Error("Not authorized");
