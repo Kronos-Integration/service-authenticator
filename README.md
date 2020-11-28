@@ -20,6 +20,8 @@ authentication providing service
 -   [JWTResponse](#jwtresponse)
     -   [Properties](#properties)
 -   [ServiceAuthenticator](#serviceauthenticator)
+    -   [changePasswordEndpoints](#changepasswordendpoints)
+    -   [authEndpoints](#authendpoints)
     -   [accessTokenGenerator](#accesstokengenerator)
         -   [Parameters](#parameters)
     -   [name](#name)
@@ -37,6 +39,14 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 ## ServiceAuthenticator
 
 **Extends Service**
+
+### changePasswordEndpoints
+
+Endpoints used to send password change requests to.
+
+### authEndpoints
+
+Endpoints used to send authentication requests to.
 
 ### accessTokenGenerator
 
