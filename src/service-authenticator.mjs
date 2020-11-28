@@ -75,6 +75,20 @@ export class ServiceAuthenticator extends Service {
     };
   }
 
+  /**
+   * Endpoints used to send password change requests to.
+   */
+  get changePasswordEndpoints() {
+    return this.outEndpoints.filter(e => e.name.endsWith("change_password"));
+  }
+
+  /**
+   * Endpoints used to send authentication requests to.
+   */
+  get authEndpoints() {
+    return this.outEndpoints.filter(e => e.name.endsWith("authenticate"));
+  }
+
   entitlementFilter(e) {
     return e;
   }
@@ -82,7 +96,7 @@ export class ServiceAuthenticator extends Service {
   async changePassword(request) {
     this.info(request);
 
-    for (const e of this.outEndpoints) {
+    for (const e of this.changePasswordEndpoints) {
       response = await e.send(request);
     }
 
@@ -100,7 +114,7 @@ export class ServiceAuthenticator extends Service {
     try {
       let entitlements = [];
 
-      for (const e of this.outEndpoints) {
+      for (const e of this.authEndpoints) {
         const response = await e.send(credentials);
 
         if (response && response.entitlements) {
