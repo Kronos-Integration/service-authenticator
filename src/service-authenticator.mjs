@@ -104,7 +104,7 @@ export class ServiceAuthenticator extends Service {
   }
 
   /**
-   * Generate a request handler to deliver JWT access tokens
+   * Generate a request handler to deliver JWT access tokens.
    * @param {Object} credentials
    * @param {string} credentials.username
    * @param {string} credentials.password
