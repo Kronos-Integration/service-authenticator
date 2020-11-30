@@ -50,7 +50,7 @@ Endpoints used to send authentication requests to.
 
 ### accessTokenGenerator
 
-Generate a request handler to deliver JWT access tokens
+Generate a request handler to deliver JWT access tokens.
 
 #### Parameters
 
