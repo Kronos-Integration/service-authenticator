@@ -20,6 +20,10 @@ export class ServiceAuthenticator extends Service {
     return "authenticator";
   }
 
+  static get description() {
+    return "provide authentication services";
+  }
+
   static get configurationAttributes() {
     return mergeAttributes(
       Service.configurationAttributes,
@@ -55,10 +59,6 @@ export class ServiceAuthenticator extends Service {
         }
       })
     );
-  }
-
-  static get description() {
-    return "provide authentication services";
   }
 
   static get endpoints() {
