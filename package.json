@@ -34,7 +34,7 @@
     "@kronos-integration/endpoint": "^9.3.0",
     "@kronos-integration/service": "^10.0.2",
     "jsonwebtoken": "^8.5.1",
-    "model-attributes": "^4.1.7"
+    "model-attributes": "^4.1.8"
   },
   "devDependencies": {
     "ava": "^3.14.0",
