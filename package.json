@@ -29,8 +29,8 @@
     "lint:docs": "documentation lint ./src/service-authenticator.mjs"
   },
   "dependencies": {
-    "@kronos-integration/endpoint": "^9.3.0",
-    "@kronos-integration/service": "^10.0.2",
+    "@kronos-integration/endpoint": "^9.3.2",
+    "@kronos-integration/service": "^10.0.4",
     "jsonwebtoken": "^8.5.1",
     "model-attributes": "^4.1.8"
   },
