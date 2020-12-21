@@ -28,13 +28,11 @@ const config = {
 test("service-auth", async t => {
   const sp = new StandaloneServiceProvider();
   const { auth } = await sp.declareServices(config);
-  await auth.start();
 
   t.is(auth.description, "provide authentication services");
   t.true(
     auth.endpoints["ldap.authenticate"].isConnected(sp.services.ldap.endpoints.authenticate)
   );
-  t.is(auth.state, "running");
 
   const response = await auth.endpoints.access_token.receive({
     username: "user1",
