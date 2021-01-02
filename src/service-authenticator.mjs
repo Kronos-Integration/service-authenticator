@@ -26,7 +26,6 @@ export class ServiceAuthenticator extends Service {
 
   static get configurationAttributes() {
     return mergeAttributes(
-      Service.configurationAttributes,
       createAttributes({
         jwt: {
           description: "jwt related",
@@ -57,7 +56,8 @@ export class ServiceAuthenticator extends Service {
             }
           }
         }
-      })
+      }),
+      Service.configurationAttributes
     );
   }
 
