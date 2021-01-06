@@ -1,13 +1,9 @@
 import test from "ava";
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
 import { readFileSync } from "fs";
 import AuthSource from "./helpers/auth-source.mjs";
 
 import { StandaloneServiceProvider } from "@kronos-integration/service";
 import { ServiceAuthenticator } from "@kronos-integration/service-authenticator";
-
-const here = dirname(fileURLToPath(import.meta.url));
 
 const config = {
   auth: {
@@ -16,8 +12,12 @@ const config = {
       "ldap.authenticate": "service(ldap).authenticate"
     },
     jwt: {
-      public: readFileSync(join(here, "fixtures", "demo.rsa.pub")),
-      private: readFileSync(join(here, "fixtures", "demo.rsa")),
+      public: readFileSync(
+        new URL("fixtures/demo.rsa.pub", import.meta.url).pathname
+      ),
+      private: readFileSync(
+        new URL("fixtures/demo.rsa", import.meta.url).pathname
+      ),
       claims: {
         iss: "myself",
         aud: "all"
