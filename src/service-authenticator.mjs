@@ -25,6 +25,8 @@ export class ServiceAuthenticator extends Service {
   }
 
   static get configurationAttributes() {
+    const algorithm = { default: "RS256", type: "string" };
+
     return mergeAttributes(
       createAttributes({
         jwt: {
@@ -42,15 +44,21 @@ export class ServiceAuthenticator extends Service {
               private: true,
               type: "blob"
             },
+            claims: {
+              attributes: {
+                iss: { type: "string" },
+                aud: { type: "string" }
+              }
+            },
             access_token: {
               attributes: {
-                algorithm: { default: "RS256", type: "string" },
+                algorithm,
                 expiresIn: { default: "1h", type: "duration" }
               }
             },
             refresh_token: {
               attributes: {
-                algorithm: { default: "RS256", type: "string" },
+                algorithm,
                 expiresIn: { default: "30d", type: "duration" }
               }
             }
@@ -126,11 +134,15 @@ export class ServiceAuthenticator extends Service {
       entitlements = [...entitlements].filter(e => this.entitlementFilter(e));
 
       if (entitlements.length > 0) {
+        const claims = {
+          ...this.jwt.claims,
+          entitlements: entitlements.join(",")
+        };
         return {
           token_type: "Bearer",
           expires_in: this.jwt.access_token.expiresIn,
           access_token: jwt.sign(
-            { entitlements: entitlements.join(",") },
+            claims,
             this.jwt.private,
             this.jwt.access_token
           ),

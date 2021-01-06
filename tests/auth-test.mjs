@@ -17,7 +17,11 @@ const config = {
     },
     jwt: {
       public: readFileSync(join(here, "fixtures", "demo.rsa.pub")),
-      private: readFileSync(join(here, "fixtures", "demo.rsa"))
+      private: readFileSync(join(here, "fixtures", "demo.rsa")),
+      claims: {
+        iss: "myself",
+        aud: "all"
+      }
     }
   },
   ldap: {
@@ -31,7 +35,9 @@ test("service-auth", async t => {
 
   t.is(auth.description, "provide authentication services");
   t.true(
-    auth.endpoints["ldap.authenticate"].isConnected(sp.services.ldap.endpoints.authenticate)
+    auth.endpoints["ldap.authenticate"].isConnected(
+      sp.services.ldap.endpoints.authenticate
+    )
   );
 
   const response = await auth.endpoints.access_token.receive({
@@ -42,8 +48,9 @@ test("service-auth", async t => {
   t.is(response.token_type, "Bearer");
   const access_token = response.access_token;
   const data = JSON.parse(Buffer.from(access_token.split(".")[1], "base64"));
-
   t.deepEqual(data.entitlements.split(/,/), ["a", "b"]);
+  t.is(data.iss, "myself");
+  t.is(data.aud, "all");
 
   const refresh_token = response.refresh_token;
   t.truthy(refresh_token);
