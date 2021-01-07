@@ -134,19 +134,21 @@ export class ServiceAuthenticator extends Service {
       entitlements = [...entitlements].filter(e => this.entitlementFilter(e));
 
       if (entitlements.length > 0) {
+        const j = this.jwt;
         const claims = {
-          ...this.jwt.claims,
+          name: credentials.username,
+          ...j.claims,
           entitlements: entitlements.join(",")
         };
         return {
           token_type: "Bearer",
-          expires_in: this.jwt.access_token.expiresIn,
+          expires_in: j.access_token.expiresIn,
           access_token: jwt.sign(
             claims,
-            this.jwt.private,
-            this.jwt.access_token
+            j.private,
+            j.access_token
           ),
-          refresh_token: jwt.sign({}, this.jwt.private, this.jwt.refresh_token)
+          refresh_token: jwt.sign({}, j.private, j.refresh_token)
         };
       } else {
         throw new Error("Not authorized");

@@ -51,6 +51,7 @@ test("service-auth", async t => {
   t.deepEqual(data.entitlements.split(/,/), ["a", "b"]);
   t.is(data.iss, "myself");
   t.is(data.aud, "all");
+  t.is(data.name, "user1");
 
   const refresh_token = response.refresh_token;
   t.truthy(refresh_token);
