@@ -7,7 +7,30 @@ import { Service } from "@kronos-integration/service";
  * @property {string} access_token
  * @property {string} refresh_token
  * @property {string} token_type always "Bearer"
+ * @property {number} expires seconds the access token is valid
  */
+
+/**
+ * Recode duration string into seconds.
+ * 2h -> 7200
+ * @param {string} duration
+ * @returns {number} seconds
+ */
+function durationAsSeconds(duration) {
+  if (duration) {
+    const m = duration.match(/^(\d+)(\w+)/);
+
+    if (m) {
+      const n2s = { m: 60, h: 3600 };
+      const unitName = m[2];
+      if (n2s[unitName]) {
+        return n2s[unitName] * parseInt(m[1]);
+      }
+    }
+  }
+
+  return 0;
+}
 
 /**
  *
@@ -142,12 +165,8 @@ export class ServiceAuthenticator extends Service {
         };
         return {
           token_type: "Bearer",
-          expires_in: j.access_token.expiresIn,
-          access_token: jwt.sign(
-            claims,
-            j.private,
-            j.access_token
-          ),
+          expires: durationAsSeconds(j.access_token.expiresIn),
+          access_token: jwt.sign(claims, j.private, j.access_token),
           refresh_token: jwt.sign({}, j.private, j.refresh_token)
         };
       } else {

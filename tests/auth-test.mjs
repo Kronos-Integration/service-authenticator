@@ -46,6 +46,7 @@ test("service-auth", async t => {
   });
 
   t.is(response.token_type, "Bearer");
+  t.is(response.expires, 3600);
   const access_token = response.access_token;
   const data = JSON.parse(Buffer.from(access_token.split(".")[1], "base64"));
   t.deepEqual(data.entitlements.split(/,/), ["a", "b"]);
