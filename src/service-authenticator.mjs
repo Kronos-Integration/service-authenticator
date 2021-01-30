@@ -144,7 +144,7 @@ export class ServiceAuthenticator extends Service {
         };
         return {
           token_type: "Bearer",
-          expires: ms(j.access_token.expiresIn) / 1000,
+          expires_in: ms(j.access_token.expiresIn) / 1000,
           access_token: jwt.sign(claims, j.private, j.access_token),
           refresh_token: jwt.sign({}, j.private, j.refresh_token)
         };
