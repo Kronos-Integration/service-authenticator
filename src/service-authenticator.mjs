@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import ms from "ms";
 import { mergeAttributes, createAttributes } from "model-attributes";
 import { Service } from "@kronos-integration/service";
 
@@ -9,28 +10,6 @@ import { Service } from "@kronos-integration/service";
  * @property {string} token_type always "Bearer"
  * @property {number} expires seconds the access token is valid
  */
-
-/**
- * Recode duration string into seconds.
- * 2h -> 7200
- * @param {string} duration
- * @returns {number} seconds
- */
-function durationAsSeconds(duration) {
-  if (duration) {
-    const m = duration.match(/^(\d+)(\w+)/);
-
-    if (m) {
-      const n2s = { m: 60, h: 3600 };
-      const unitName = m[2];
-      if (n2s[unitName]) {
-        return n2s[unitName] * parseInt(m[1]);
-      }
-    }
-  }
-
-  return 0;
-}
 
 /**
  *
@@ -165,7 +144,7 @@ export class ServiceAuthenticator extends Service {
         };
         return {
           token_type: "Bearer",
-          expires: durationAsSeconds(j.access_token.expiresIn),
+          expires: ms(j.access_token.expiresIn) / 1000,
           access_token: jwt.sign(claims, j.private, j.access_token),
           refresh_token: jwt.sign({}, j.private, j.refresh_token)
         };
