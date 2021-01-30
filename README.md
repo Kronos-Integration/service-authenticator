@@ -23,13 +23,11 @@ authentication providing service
 
 -   [JWTResponse](#jwtresponse)
     -   [Properties](#properties)
--   [durationAsSeconds](#durationasseconds)
-    -   [Parameters](#parameters)
 -   [ServiceAuthenticator](#serviceauthenticator)
     -   [changePasswordEndpoints](#changepasswordendpoints)
     -   [authEndpoints](#authendpoints)
     -   [accessTokenGenerator](#accesstokengenerator)
-        -   [Parameters](#parameters-1)
+        -   [Parameters](#parameters)
     -   [name](#name)
 
 ## JWTResponse
@@ -42,17 +40,6 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 -   `refresh_token` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 -   `token_type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** always "Bearer"
 -   `expires` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** seconds the access token is valid
-
-## durationAsSeconds
-
-Recode duration string into seconds.
-2h -> 7200
-
-### Parameters
-
--   `duration` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-Returns **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** seconds
 
 ## ServiceAuthenticator
 
