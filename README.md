@@ -3,7 +3,7 @@
 [![minified size](https://badgen.net/bundlephobia/min/@kronos-integration/service-authenticator)](https://bundlephobia.com/result?p=@kronos-integration/service-authenticator)
 [![downloads](http://img.shields.io/npm/dm/@kronos-integration/service-authenticator.svg?style=flat-square)](https://npmjs.org/package/@kronos-integration/service-authenticator)
 [![GitHub Issues](https://img.shields.io/github/issues/Kronos-Integration/service-authenticator.svg?style=flat-square)](https://github.com/Kronos-Integration/service-authenticator/issues)
-[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FKronos-Integration%2Fservice-authenticator%2Fbadge&style=flat)](https://actions-badge.atrox.dev/Kronos-Integration/service-authenticator/goto)
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FKronos-Integration%2Fservice-authenticator%2Fbadge\&style=flat)](https://actions-badge.atrox.dev/Kronos-Integration/service-authenticator/goto)
 [![Styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![Known Vulnerabilities](https://snyk.io/test/github/Kronos-Integration/service-authenticator/badge.svg)](https://snyk.io/test/github/Kronos-Integration/service-authenticator)
@@ -21,14 +21,14 @@ authentication providing service
 
 ### Table of Contents
 
--   [JWTResponse](#jwtresponse)
-    -   [Properties](#properties)
--   [ServiceAuthenticator](#serviceauthenticator)
-    -   [changePasswordEndpoints](#changepasswordendpoints)
-    -   [authEndpoints](#authendpoints)
-    -   [accessTokenGenerator](#accesstokengenerator)
-        -   [Parameters](#parameters)
-    -   [name](#name)
+*   [JWTResponse](#jwtresponse)
+    *   [Properties](#properties)
+*   [ServiceAuthenticator](#serviceauthenticator)
+    *   [changePasswordEndpoints](#changepasswordendpoints)
+    *   [authEndpoints](#authendpoints)
+    *   [accessTokenGenerator](#accesstokengenerator)
+        *   [Parameters](#parameters)
+    *   [name](#name)
 
 ## JWTResponse
 
@@ -36,10 +36,10 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 
 ### Properties
 
--   `access_token` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
--   `refresh_token` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
--   `token_type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** always "Bearer"
--   `expires` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** seconds the access token is valid
+*   `access_token` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+*   `refresh_token` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+*   `token_type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** always "Bearer"
+*   `expires` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** seconds the access token is valid
 
 ## ServiceAuthenticator
 
@@ -59,9 +59,10 @@ Generate a request handler to deliver JWT access tokens.
 
 #### Parameters
 
--   `credentials` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-    -   `credentials.username` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-    -   `credentials.password` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+*   `credentials` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+    *   `credentials.username` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+    *   `credentials.password` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 Returns **[JWTResponse](#jwtresponse)** jwt
 
