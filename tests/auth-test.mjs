@@ -29,7 +29,7 @@ const config = {
   }
 };
 
-test("service-auth", async t => {
+test("service-auth credentials", async t => {
   const sp = new StandaloneServiceProvider();
   const { auth } = await sp.declareServices(config);
 
@@ -56,4 +56,20 @@ test("service-auth", async t => {
 
   const refresh_token = response.refresh_token;
   t.truthy(refresh_token);
+});
+
+test.skip("service-auth with refresh_token", async t => {
+  const sp = new StandaloneServiceProvider();
+  const { auth } = await sp.declareServices(config);
+
+  let response = await auth.endpoints.access_token.receive({
+    username: "user1",
+    password: "test"
+  });
+
+  const refresh_token = response.refresh_token;
+
+  response = await auth.endpoints.access_token.receive({
+    refresh_token
+  });
 });
