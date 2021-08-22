@@ -61,7 +61,7 @@ export class ServiceAuthenticator extends Service {
             refresh_token: {
               attributes: {
                 algorithm,
-                expiresIn: { default: "30d", type: "duration" }
+                expiresIn: { default: "90d", type: "duration" }
               }
             }
           }
