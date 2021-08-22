@@ -58,7 +58,7 @@ test("service-auth credentials", async t => {
   t.truthy(refresh_token);
 });
 
-test.skip("service-auth with refresh_token", async t => {
+test("service-auth with refresh_token", async t => {
   const sp = new StandaloneServiceProvider();
   const { auth } = await sp.declareServices(config);
 
@@ -67,9 +67,17 @@ test.skip("service-auth with refresh_token", async t => {
     password: "test"
   });
 
-  const refresh_token = response.refresh_token;
+  let refresh_token = response.refresh_token;
+  let data = JSON.parse(Buffer.from(refresh_token.split(".")[1], "base64"));
+  console.log(data);
+  t.is(data.sequence, 1);
 
   response = await auth.endpoints.access_token.receive({
     refresh_token
   });
+
+  refresh_token = response.refresh_token;
+  data = JSON.parse(Buffer.from(refresh_token.split(".")[1], "base64"));
+  t.is(data.sequence, 2);
+  //t.is(data.name, "user1");
 });

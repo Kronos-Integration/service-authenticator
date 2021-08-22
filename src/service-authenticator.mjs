@@ -1,7 +1,10 @@
+import { promisify } from "util";
 import jwt from "jsonwebtoken";
 import ms from "ms";
 import { mergeAttributes, createAttributes } from "model-attributes";
 import { Service } from "@kronos-integration/service";
+
+export const verifyJWT = promisify(jwt.verify);
 
 /**
  * @typedef {Object} JWTResponse
@@ -123,13 +126,27 @@ export class ServiceAuthenticator extends Service {
   async accessTokenGenerator(credentials) {
     try {
       let entitlements = [];
+      let refreshClaims = { sequence: 1 };
+    
+      if (credentials.refresh_token) {
+        const decoded = await verifyJWT(credentials.refresh_token, this.jwt.public);
+        if (decoded) {
+        //  this.info("refresh " + decoded);
+          entitlements = ["refresh"]; // TODO
+          refreshClaims.name = decoded.name;
+          refreshClaims.sequence = decoded.sequence + 1;
+        }
+      }
+      else {
+        refreshClaims.name = credentials.username;
 
-      for (const e of this.authEndpoints) {
-        const response = await e.send(credentials);
+        for (const e of this.authEndpoints) {
+          const response = await e.send(credentials);
 
-        if (response && response.entitlements) {
-          entitlements = [...response.entitlements];
-          break;
+          if (response && response.entitlements) {
+            entitlements = [...response.entitlements];
+            break;
+          }
         }
       }
 
@@ -137,6 +154,7 @@ export class ServiceAuthenticator extends Service {
 
       if (entitlements.length > 0) {
         const j = this.jwt;
+
         const claims = {
           name: credentials.username,
           ...j.claims,
@@ -146,7 +164,7 @@ export class ServiceAuthenticator extends Service {
           token_type: "Bearer",
           expires_in: ms(j.access_token.expiresIn) / 1000,
           access_token: jwt.sign(claims, j.private, j.access_token),
-          refresh_token: jwt.sign({}, j.private, j.refresh_token)
+          refresh_token: jwt.sign(refreshClaims, j.private, j.refresh_token)
         };
       } else {
         throw new Error("Not authorized");
