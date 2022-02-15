@@ -29,10 +29,10 @@
     "lint:docs": "documentation lint ./src/**/*.mjs"
   },
   "dependencies": {
-    "@kronos-integration/endpoint": "^9.4.22",
+    "@kronos-integration/endpoint": "^9.4.23",
     "@kronos-integration/service": "^10.4.20",
     "jsonwebtoken": "^8.5.1",
-    "model-attributes": "^4.1.12"
+    "model-attributes": "^4.1.14"
   },
   "devDependencies": {
     "ava": "^4.0.1",
