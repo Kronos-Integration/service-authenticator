@@ -1,4 +1,4 @@
-import { promisify } from "util";
+import { promisify } from "node:util";
 import jwt from "jsonwebtoken";
 import ms from "ms";
 import { mergeAttributes, createAttributes } from "model-attributes";

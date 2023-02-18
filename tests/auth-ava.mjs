@@ -1,7 +1,6 @@
 import test from "ava";
-import { readFileSync } from "fs";
+import { readFileSync } from "node:fs";
 import AuthSource from "./helpers/auth-source.mjs";
-
 import { StandaloneServiceProvider } from "@kronos-integration/service";
 import { ServiceAuthenticator } from "@kronos-integration/service-authenticator";
 
