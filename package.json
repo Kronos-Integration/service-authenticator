@@ -28,8 +28,8 @@
     "lint:docs": "documentation lint ./src/**/*.mjs"
   },
   "dependencies": {
-    "@kronos-integration/endpoint": "^9.4.44",
-    "@kronos-integration/service": "^10.4.54",
+    "@kronos-integration/endpoint": "^9.4.45",
+    "@kronos-integration/service": "^10.4.55",
     "jsonwebtoken": "^9.0.2",
     "model-attributes": "^4.2.2"
   },
