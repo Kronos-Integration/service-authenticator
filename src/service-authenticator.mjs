@@ -11,7 +11,7 @@ export const verifyJWT = promisify(jwt.verify);
  * @property {string} access_token
  * @property {string} refresh_token
  * @property {string} token_type always "Bearer"
- * @property {number} expires seconds the access token is valid
+ * @property {number} expires_in seconds the access token is valid
  */
 
 /**
@@ -109,6 +109,7 @@ export class ServiceAuthenticator extends Service {
   async changePassword(request) {
     this.info(request);
 
+    let response;
     for (const e of this.changePasswordEndpoints) {
       response = await e.send(request);
     }
