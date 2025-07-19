@@ -1,7 +1,7 @@
 import { promisify } from "node:util";
 import jwt from "jsonwebtoken";
 import ms from "ms";
-import { mergeAttributes, createAttributes } from "model-attributes";
+import { mergeAttributeDefinitions, prepareAttributesDefinitions } from "pacc";
 import { Service } from "@kronos-integration/service";
 
 export const verifyJWT = promisify(jwt.verify);
@@ -32,8 +32,8 @@ export class ServiceAuthenticator extends Service {
   static get configurationAttributes() {
     const algorithm = { default: "RS256", type: "string" };
 
-    return mergeAttributes(
-      createAttributes({
+    return mergeAttributeDefinitions(
+      prepareAttributesDefinitions({
         jwt: {
           description: "jwt related",
           attributes: {
