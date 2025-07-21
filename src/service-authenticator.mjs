@@ -1,7 +1,11 @@
 import { promisify } from "node:util";
 import jwt from "jsonwebtoken";
 import ms from "ms";
-import { mergeAttributeDefinitions, prepareAttributesDefinitions } from "pacc";
+import {
+  mergeAttributeDefinitions,
+  prepareAttributesDefinitions,
+  default_attribute
+} from "pacc";
 import { Service } from "@kronos-integration/service";
 
 export const verifyJWT = promisify(jwt.verify);
@@ -13,6 +17,8 @@ export const verifyJWT = promisify(jwt.verify);
  * @property {string} token_type always "Bearer"
  * @property {number} expires_in seconds the access token is valid
  */
+
+const algorithm = { ...default_attribute, default: "RS256" };
 
 /**
  *
@@ -29,50 +35,46 @@ export class ServiceAuthenticator extends Service {
     return "provide authentication services";
   }
 
-  static get configurationAttributes() {
-    const algorithm = { default: "RS256", type: "string" };
-
-    return mergeAttributeDefinitions(
-      prepareAttributesDefinitions({
-        jwt: {
-          description: "jwt related",
-          attributes: {
-            private: {
-              description: "private key for token",
-              mandatory: true,
-              private: true,
-              type: "blob"
-            },
-            public: {
-              description: "public key for token",
-              mandatory: true,
-              private: true,
-              type: "blob"
-            },
-            claims: {
-              attributes: {
-                iss: { type: "string" },
-                aud: { type: "string" }
-              }
-            },
-            access_token: {
-              attributes: {
-                algorithm,
-                expiresIn: { default: "1h", type: "duration" }
-              }
-            },
-            refresh_token: {
-              attributes: {
-                algorithm,
-                expiresIn: { default: "90d", type: "duration" }
-              }
+  static attributes = mergeAttributeDefinitions(
+    prepareAttributesDefinitions({
+      jwt: {
+        description: "jwt related",
+        attributes: {
+          private: {
+            description: "private key for token",
+            mandatory: true,
+            private: true,
+            type: "blob"
+          },
+          public: {
+            description: "public key for token",
+            mandatory: true,
+            private: true,
+            type: "blob"
+          },
+          claims: {
+            attributes: {
+              iss: { type: "string" },
+              aud: { type: "string" }
+            }
+          },
+          access_token: {
+            attributes: {
+              algorithm,
+              expiresIn: { default: "1h", type: "duration" }
+            }
+          },
+          refresh_token: {
+            attributes: {
+              algorithm,
+              expiresIn: { default: "90d", type: "duration" }
             }
           }
         }
-      }),
-      Service.configurationAttributes
-    );
-  }
+      }
+    }),
+    Service.attributes
+  );
 
   static get endpoints() {
     return {
@@ -128,17 +130,19 @@ export class ServiceAuthenticator extends Service {
     try {
       let entitlements = [];
       let refreshClaims = { sequence: 1 };
-    
+
       if (credentials.refresh_token) {
-        const decoded = await verifyJWT(credentials.refresh_token, this.jwt.public);
+        const decoded = await verifyJWT(
+          credentials.refresh_token,
+          this.jwt.public
+        );
         if (decoded) {
-        //  this.info("refresh " + decoded);
+          //  this.info("refresh " + decoded);
           entitlements = ["refresh"]; // TODO
           refreshClaims.name = decoded.name;
           refreshClaims.sequence = decoded.sequence + 1;
         }
-      }
-      else {
+      } else {
         refreshClaims.name = credentials.username;
 
         for (const e of this.authEndpoints) {
