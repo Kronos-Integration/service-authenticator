@@ -40,7 +40,7 @@
     "semantic-release": "^25.0.1"
   },
   "engines": {
-    "node": ">=22.17.1"
+    "node": ">=24.11.0"
   },
   "repository": {
     "type": "git",
