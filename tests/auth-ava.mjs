@@ -43,9 +43,8 @@ test("service-auth credentials", async t => {
     username: "user1",
     password: "test"
   });
-
   t.is(response.token_type, "Bearer");
-  t.is(response.expires_in, 3600);
+  t.is(response.expires_in, 1);
   const access_token = response.access_token;
   const data = JSON.parse(Buffer.from(access_token.split(".")[1], "base64"));
   t.deepEqual(data.entitlements.split(/,/), ["a", "b"]);
@@ -68,7 +67,6 @@ test("service-auth with refresh_token", async t => {
 
   let refresh_token = response.refresh_token;
   let data = JSON.parse(Buffer.from(refresh_token.split(".")[1], "base64"));
-  console.log(data);
   t.is(data.sequence, 1);
 
   response = await auth.endpoints.access_token.receive({

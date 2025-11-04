@@ -1,11 +1,11 @@
 import { promisify } from "node:util";
 import jwt from "jsonwebtoken";
-import ms from "ms";
 import {
   prepareAttributesDefinitions,
   default_attribute,
   public_key_attribute,
-  private_key_attribute
+  private_key_attribute,
+  object_attribute
 } from "pacc";
 import { Service } from "@kronos-integration/service";
 
@@ -36,9 +36,10 @@ export class ServiceAuthenticator extends Service {
     return "provide authentication services";
   }
 
-  static attributes =
-    prepareAttributesDefinitions({
+  static attributes = prepareAttributesDefinitions(
+    {
       jwt: {
+        ...object_attribute,
         description: "jwt related",
         attributes: {
           private: {
@@ -52,6 +53,7 @@ export class ServiceAuthenticator extends Service {
             mandatory: true
           },
           claims: {
+            ...object_attribute,
             attributes: {
               iss: default_attribute,
               aud: default_attribute
@@ -166,7 +168,7 @@ export class ServiceAuthenticator extends Service {
         };
         return {
           token_type: "Bearer",
-          expires_in: ms(j.access_token.expiresIn) / 1000,
+          expires_in: j.access_token.expiresIn,
           access_token: jwt.sign(claims, j.private, j.access_token),
           refresh_token: jwt.sign(refreshClaims, j.private, j.refresh_token)
         };
