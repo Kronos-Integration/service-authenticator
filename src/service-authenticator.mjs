@@ -44,14 +44,12 @@ export class ServiceAuthenticator extends Service {
           private: {
             ...private_key_attribute,
             description: "private key for token",
-            mandatory: true,
-            type: "blob"
+            mandatory: true
           },
           public: {
             ...public_key_attribute,
             description: "public key for token",
-            mandatory: true,
-            type: "blob"
+            mandatory: true
           },
           claims: {
             attributes: {
