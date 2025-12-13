@@ -91,7 +91,10 @@ export class ServiceAuthenticator extends Service {
     };
   }
 
-  async configure(config) {
+  async _configure(config) {
+    // TODO automatically read credentials
+    config.jwt ||= {};
+
     const credentials = await this.getCredentials();
     if (credentials["jwt.private"]) {
       config.jwt.private = credentials["jwt.private"];
@@ -99,7 +102,7 @@ export class ServiceAuthenticator extends Service {
     if (credentials["jwt.public"]) {
       config.jwt.public = credentials["jwt.public"];
     }
-    return super.configure(config);
+    return super._configure(config);
   }
 
   /**
