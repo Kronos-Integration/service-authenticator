@@ -96,8 +96,8 @@ export class ServiceAuthenticator extends Service {
     if (credentials["jwt.private"]) {
       config.jwt.private = credentials["jwt.private"];
     }
-    if (credentials["jwt.private"]) {
-      config.jwt.public = credentials["jwt.pupblic"];
+    if (credentials["jwt.public"]) {
+      config.jwt.public = credentials["jwt.public"];
     }
     return super.configure(config);
   }
