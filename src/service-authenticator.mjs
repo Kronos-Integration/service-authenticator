@@ -91,6 +91,17 @@ export class ServiceAuthenticator extends Service {
     };
   }
 
+  async configure(config) {
+    const credentials = await this.getCredentials();
+    if (credentials["jwt.private"]) {
+      config.jwt.private = credentials["jwt.private"];
+    }
+    if (credentials["jwt.private"]) {
+      config.jwt.public = credentials["jwt.pupblic"];
+    }
+    return super.configure(config);
+  }
+
   /**
    * Endpoints used to send password change requests to.
    */
