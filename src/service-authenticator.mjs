@@ -2,11 +2,11 @@ import { promisify } from "node:util";
 import jwt from "jsonwebtoken";
 import {
   prepareAttributesDefinitions,
-  default_attribute,
   public_key_attribute,
   private_key_attribute,
   object_attribute,
-  duration_ms_attribute
+  duration_ms_attribute,
+  string_attribute
 } from "pacc";
 import { Service } from "@kronos-integration/service";
 
@@ -20,7 +20,7 @@ export const verifyJWT = promisify(jwt.verify);
  * @property {number} expires_in seconds the access token is valid
  */
 
-const algorithm = { ...default_attribute, default: "RS256" };
+const algorithm = { ...string_attribute, default: "RS256" };
 
 /**
  *
@@ -58,8 +58,8 @@ export class ServiceAuthenticator extends Service {
           claims: {
             ...object_attribute,
             attributes: {
-              iss: default_attribute,
-              aud: default_attribute
+              iss: string_attribute,
+              aud: string_attribute
             }
           },
           access_token: {
@@ -96,8 +96,7 @@ export class ServiceAuthenticator extends Service {
     };
   }
 
-  get autostart()
-  {
+  get autostart() {
     return true;
   }
 
@@ -185,9 +184,9 @@ export class ServiceAuthenticator extends Service {
       } else {
         throw new Error("Not authorized");
       }
-    } catch (e) {
-      this.error(e);
-      throw new Error("Authentication failed");
+    } catch (cause) {
+      this.error(cause);
+      throw new Error("Authentication failed", { cause });
     }
   }
 }
