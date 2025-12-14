@@ -32,6 +32,7 @@ test("service-auth credentials", async t => {
   const sp = new StandaloneServiceProvider();
   const { auth } = await sp.declareServices(config);
 
+  //t.is(auth.jwt.access_token.expiresIn, 3600000);
   t.is(auth.description, "provide authentication services");
   t.true(
     auth.endpoints["ldap.authenticate"].isConnected(
@@ -44,7 +45,7 @@ test("service-auth credentials", async t => {
     password: "test"
   });
   t.is(response.token_type, "Bearer");
-  t.is(response.expires_in, 1);
+  t.is(response.expires_in, 3600000);
   const access_token = response.access_token;
   const data = JSON.parse(Buffer.from(access_token.split(".")[1], "base64"));
   t.deepEqual(data.entitlements.split(/,/), ["a", "b"]);

@@ -5,7 +5,8 @@ import {
   default_attribute,
   public_key_attribute,
   private_key_attribute,
-  object_attribute
+  object_attribute,
+  duration_ms_attribute
 } from "pacc";
 import { Service } from "@kronos-integration/service";
 
@@ -60,15 +61,17 @@ export class ServiceAuthenticator extends Service {
             }
           },
           access_token: {
+            ...object_attribute,
             attributes: {
               algorithm,
-              expiresIn: { default: "1h", type: "duration" }
+              expiresIn: { ...duration_ms_attribute, default: "1h" }
             }
           },
           refresh_token: {
+            ...object_attribute,
             attributes: {
               algorithm,
-              expiresIn: { default: "90d", type: "duration" }
+              expiresIn: { ...duration_ms_attribute, default: "90d" }
             }
           }
         }
@@ -182,7 +185,7 @@ export class ServiceAuthenticator extends Service {
         };
         return {
           token_type: "Bearer",
-          expires_in: j.access_token.expiresIn,
+          expires_in: j.access_token.expiresIn / 1000,
           access_token: jwt.sign(claims, j.private, j.access_token),
           refresh_token: jwt.sign(refreshClaims, j.private, j.refresh_token)
         };
