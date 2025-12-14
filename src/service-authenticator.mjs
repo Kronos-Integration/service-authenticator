@@ -96,23 +96,10 @@ export class ServiceAuthenticator extends Service {
     };
   }
 
-  /*
-  _configure(config) {
-    this.getCredentials().then(credentials => {
-      // TODO automatically read credentials
-      this.jwt ||= {};
-
-      if (credentials["jwt.private"]) {
-        this.jwt.private = credentials["jwt.private"];
-      }
-      if (credentials["jwt.public"]) {
-        this.jwt.public = credentials["jwt.public"];
-      }
-    });
-
-    return super._configure(config);
+  get autostart()
+  {
+    return true;
   }
-*/
 
   /**
    * Endpoints used to send password change requests to.
