@@ -46,12 +46,14 @@ export class ServiceAuthenticator extends Service {
           private: {
             ...private_key_attribute,
             description: "private key for token",
-            mandatory: true
+            mandatory: true,
+            persistent: true
           },
           public: {
             ...public_key_attribute,
             description: "public key for token",
-            mandatory: true
+            mandatory: true,
+            persistent: true
           },
           claims: {
             ...object_attribute,
@@ -94,6 +96,7 @@ export class ServiceAuthenticator extends Service {
     };
   }
 
+  /*
   _configure(config) {
     this.getCredentials().then(credentials => {
       // TODO automatically read credentials
@@ -109,6 +112,7 @@ export class ServiceAuthenticator extends Service {
 
     return super._configure(config);
   }
+*/
 
   /**
    * Endpoints used to send password change requests to.
