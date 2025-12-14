@@ -94,17 +94,19 @@ export class ServiceAuthenticator extends Service {
     };
   }
 
-  async _configure(config) {
-    // TODO automatically read credentials
-    config.jwt ||= {};
+  _configure(config) {
+    this.getCredentials().then(credentials => {
+      // TODO automatically read credentials
+      this.jwt ||= {};
 
-    const credentials = await this.getCredentials();
-    if (credentials["jwt.private"]) {
-      config.jwt.private = credentials["jwt.private"];
-    }
-    if (credentials["jwt.public"]) {
-      config.jwt.public = credentials["jwt.public"];
-    }
+      if (credentials["jwt.private"]) {
+        this.jwt.private = credentials["jwt.private"];
+      }
+      if (credentials["jwt.public"]) {
+        this.jwt.public = credentials["jwt.public"];
+      }
+    });
+
     return super._configure(config);
   }
 
